@@ -1,13 +1,13 @@
 
 ## Build image
 Inside cloned repository
-`
+```
 docker build -f Dockerfile.noetic -t cartographer_noetic .
-`
+```
 ## Create container, install cartographer
-`
+```
 docker run -it --net=host --name cartographer_kitti_noetic cartographer_noetic bash
-`
+```
 Inside container
 
 ```
@@ -23,31 +23,25 @@ catkin_make
 https://github.com/inkyusa/cartographer_kitti_config
 
 ## DEMO Cartographer noetic
-For some reason, the launch file in the cartographer for kitti repo does not work. Do these commands to replace the launch file:
-
-`
+Follow these steps to launch a demo in rviz with the recorded bags
+```
 docker start cartographer_kitti_noetic
-`
+```
 
-in every of the 3 terminals
+in both terminals, run
 
-`
+```
 docker exec -it cartographer_kitti_noetic bash
-`
-### Terminal 1
-```
-source /ros_entrypoint.sh 
-roscore
 ```
 
-### Terminal 2
+### Terminal 1
 ```
 source /ros_entrypoint.sh 
 source /kitti_ws/devel/setup.bash
 roslaunch kitti_ws/src/cartographer_kitti_config/launch/demo_kitti_3d.launch
 ```
 
-### Terminal 3
+### Terminal 2
 ```
 source /ros_entrypoint.sh 
 rosbag play --clock -r 0.2 /kitti/oxts/imu:=imu /kitti/velo/pointcloud:=points2 /tf:=/tf_in rosbags/kitti_2011_09_30_drive_0027_synced_imu_velo.bag
@@ -58,6 +52,6 @@ https://github.com/inkyusa/cartographer_kitti_config/blob/master/configuration_f
 
 Terminal Host
 
-`
+```
 rosrun rviz rviz -d <path_to_your_file>/kitti_3d_new.rviz 
-`
+```
