@@ -38,13 +38,13 @@ docker exec -it cartographer_kitti_noetic bash
 ```
 source /ros_entrypoint.sh 
 source /kitti_ws/devel/setup.bash
-roslaunch kitti_ws/src/cartographer_kitti_config/launch/demo_kitti_3d.launch
+roslaunch kitti_ws/src/cartographer_kitti_config/launch/kitti_3d.launch
 ```
 
 ### Terminal 2
 ```
 source /ros_entrypoint.sh 
-rosbag play --clock -r 0.2 /kitti/oxts/imu:=imu /kitti/velo/pointcloud:=points2 /tf:=/tf_in rosbags/kitti_2011_09_30_drive_0027_synced_imu_velo.bag
+rosbag play --clock /kitti/oxts/imu:=imu /kitti/velo/pointcloud:=points2 /tf:=/tf_in rosbags/kitti_2011_09_30_drive_0027_synced_imu_velo.bag
 ```
 
 ## For the visualization in rviz, download the config on your host system and run it with rviz
